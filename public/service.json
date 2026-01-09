@@ -1,0 +1,146 @@
+[
+  {
+    "serviceId": "svc01",
+    "serviceName": "Baby Sitting",
+    "description": "Professional babysitters providing safe, caring, and engaging supervision for infants and toddlers at home.",
+    "pricePerHour": 250,
+    "rating": 4.8,
+    "image": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "serviceId": "svc02",
+    "serviceName": "Newborn Care",
+    "description": "Specialized care for newborn babies including feeding support, sleep monitoring, and hygiene assistance.",
+    "pricePerHour": 300,
+    "rating": 4.9,
+    "image": "https://images.unsplash.com/photo-1759802146987-e421a50476a1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8TmV3Ym9ybiUyMENhcmV8ZW58MHx8MHx8fDA%3D"
+  },
+  {
+    "serviceId": "svc03",
+    "serviceName": "Child Day Care",
+    "description": "Daytime care service for children with learning activities, meals, and supervised playtime.",
+    "pricePerHour": 220,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "serviceId": "svc04",
+    "serviceName": "Elderly Home Care",
+    "description": "Compassionate in-home care for elderly individuals including daily assistance and companionship.",
+    "pricePerHour": 280,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1607748851687-ba9a10438621?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "serviceId": "svc05",
+    "serviceName": "Elderly Companionship",
+    "description": "Friendly companionship service for seniors to reduce loneliness and provide emotional support.",
+    "pricePerHour": 200,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "serviceId": "svc06",
+    "serviceName": "Post Surgery Care",
+    "description": "Professional care and monitoring for patients recovering at home after surgery.",
+    "pricePerHour": 350,
+    "rating": 4.8,
+    "image": "https://images.unsplash.com/photo-1759813641406-980519f58b1c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fFBvc3QlMjBTdXJnZXJ5JTIwQ2FyZXxlbnwwfHwwfHx8MA%3D%3D"
+  },
+  {
+    "serviceId": "svc07",
+    "serviceName": "Sick Patient Care",
+    "description": "Home-based care service for sick patients requiring regular monitoring and assistance.",
+    "pricePerHour": 300,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "serviceId": "svc08",
+    "serviceName": "Special Needs Care",
+    "description": "Personalized care for individuals with special needs delivered by trained professionals.",
+    "pricePerHour": 400,
+    "rating": 4.9,
+    "image": "https://images.unsplash.com/photo-1764006145420-df3006edf060?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fFNwZWNpYWwlMjBOZWVkcyUyMENhcmV8ZW58MHx8MHx8fDA%3D"
+  },
+  {
+    "serviceId": "svc09",
+    "serviceName": "Night Care Service",
+    "description": "Overnight caregiving service ensuring safety and assistance during night hours.",
+    "pricePerHour": 320,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "serviceId": "svc10",
+    "serviceName": "Elderly Medication Assistance",
+    "description": "Assistance with timely medication intake and health routine for elderly individuals.",
+    "pricePerHour": 240,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "serviceId": "svc11",
+    "serviceName": "Physiotherapy Assistance",
+    "description": "In-home physiotherapy support to help patients regain mobility and strength.",
+    "pricePerHour": 450,
+    "rating": 4.8,
+    "image": "https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "serviceId": "svc12",
+    "serviceName": "Dementia Care",
+    "description": "Specialized care service for patients with dementia focusing on safety and mental wellbeing.",
+    "pricePerHour": 420,
+    "rating": 4.9,
+    "image": "https://images.unsplash.com/photo-1623764410283-b45aeaacfd5c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8RGVtZW50aWElMjBDYXJlfGVufDB8fDB8fHww"
+  },
+  {
+    "serviceId": "svc13",
+    "serviceName": "Pregnancy Care",
+    "description": "Supportive care for expecting mothers including daily assistance and health monitoring.",
+    "pricePerHour": 330,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1577563651033-ec73e8228a03?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8UHJlZ25hbmN5JTIwQ2FyZXxlbnwwfHwwfHx8MA%3D%3D"
+  },
+  {
+    "serviceId": "svc14",
+    "serviceName": "Child Special Care",
+    "description": "Dedicated caregiving for children requiring extra attention due to health or developmental needs.",
+    "pricePerHour": 380,
+    "rating": 4.8,
+    "image": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "serviceId": "svc15",
+    "serviceName": "Home Nursing Service",
+    "description": "Licensed nursing support at home for medical procedures and health monitoring.",
+    "pricePerHour": 500,
+    "rating": 4.9,
+    "image": "https://images.unsplash.com/photo-1600959907703-125ba1374a12?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "serviceId": "svc16",
+    "serviceName": "Disability Care",
+    "description": "Professional care service assisting individuals with physical or mental disabilities.",
+    "pricePerHour": 360,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1478061653917-455ba7f4a541?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8RGlzYWJpbGl0eSUyMENhcmV8ZW58MHx8MHx8fDA%3D"
+  },
+  {
+    "serviceId": "svc17",
+    "serviceName": "Child After School Care",
+    "description": "Supervised care for children after school including homework help and meals.",
+    "pricePerHour": 210,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1504151932400-72d4384f04b3?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "serviceId": "svc18",
+    "serviceName": "Palliative Care",
+    "description": "Comfort-focused care service for patients with serious illnesses, ensuring dignity and support.",
+    "pricePerHour": 550,
+    "rating": 4.9,
+    "image": "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=800&q=80"
+  }
+]
