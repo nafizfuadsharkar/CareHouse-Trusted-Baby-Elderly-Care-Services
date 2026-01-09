@@ -14,7 +14,7 @@ const Services = async ({ searchParams }) => {
 
   return (
     <section className="section-padding">
-      <div className="container mx-auto">
+      <div className="max-w-7xl mx-auto">
         {/* Page Header */}
         <div className="max-w-3xl text-center mx-auto mb-12">
           <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-800 dark:text-white mb-4">

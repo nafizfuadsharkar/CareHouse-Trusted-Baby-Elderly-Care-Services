@@ -30,7 +30,7 @@ const services = [
 const ServicesSection = () => {
   return (
     <section className="section-padding">
-      <div className="container mx-auto">
+      <div className="max-w-7xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -71,10 +71,10 @@ const ServicesSection = () => {
                 </p>
 
                 <Link
-                  href={`/service/${service.id}`}
+                  href={`/services`}
                   className="inline-flex items-center gap-2 mt-6 font-medium text-emerald-600 hover:gap-3 transition-all"
                 >
-                  View Details →
+                  Explore All →
                 </Link>
               </div>
             </motion.div>

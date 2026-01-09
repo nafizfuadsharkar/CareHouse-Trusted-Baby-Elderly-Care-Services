@@ -13,7 +13,7 @@ const TestimonialsSection = () => {
     <section className="section-padding relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-sky-500/10 to-indigo-500/10 blur-3xl" />
 
-      <div className="relative container mx-auto text-center">
+      <div className="relative max-w-7xl  mx-auto text-center">
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}

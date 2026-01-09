@@ -19,7 +19,7 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 z-50">
       <nav className="backdrop-blur-xl bg-white/70 dark:bg-slate-900/70 border-b border-[var(--border-color)]">
-        <div className="container mx-auto px-6 h-[80px] flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 h-[80px] flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="text-2xl font-extrabold tracking-tight">
             <span className="text-emerald-500">Care</span>

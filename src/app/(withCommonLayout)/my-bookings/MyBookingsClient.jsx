@@ -109,8 +109,8 @@ export default function MyBookingsClient() {
 
             <div className="flex flex-col md:flex-row gap-2">
               <Link
-                href={`/booking-details/${booking.id}`}
-                className="btn btn-outline"
+                href={`/services/${booking.serviceId}`}
+                className="btn btn-outline bg-green-500 text-white hover:bg-green-600 py-1 px-3 rounded-lg"
               >
                 View Details
               </Link>
@@ -118,7 +118,7 @@ export default function MyBookingsClient() {
               {booking.status === "Pending" && (
                 <button
                   onClick={() => handleCancel(booking.id)}
-                  className="btn bg-red-500 text-white hover:bg-red-600"
+                  className="btn bg-red-500 text-white hover:bg-red-600 py-1 px-3 rounded-lg"
                 >
                   Cancel Booking
                 </button>

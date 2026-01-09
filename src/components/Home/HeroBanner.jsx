@@ -10,7 +10,7 @@ const HeroBanner = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/20 via-sky-400/20 to-indigo-500/20 blur-3xl" />
 
       <div className="relative section-padding">
-        <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-center">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
           {/* Left */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
