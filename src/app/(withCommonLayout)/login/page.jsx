@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Github, Mail } from "lucide-react";
@@ -12,6 +12,10 @@ export default function LoginPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const error = searchParams.get("error");
+
+  useEffect(() => {
+      document.title = "Log in | Trusted Baby & Elderly Care Services";
+    }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

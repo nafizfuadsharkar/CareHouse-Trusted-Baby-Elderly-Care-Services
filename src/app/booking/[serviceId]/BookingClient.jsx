@@ -101,15 +101,25 @@ export default function BookingClient({ serviceId }) {
   const handleConfirmBooking = async () => {
     if (!region || !district || !city || !area)
       return alert("Complete location");
+
+    if (!session?.user?.email) {
+      return alert("You must be logged in to book");
+    }
+
     const bookingData = {
       serviceId,
-      date: new Date(),
       serviceName,
-      durationType,
       image,
+      durationType,
       durationValue,
-      location: { region, district, city, area },
       totalCost,
+      date: new Date(),
+      user: {
+        name: session.user.name,
+        email: session.user.email,
+        phone: session.user.phone || "Not provided",
+      },
+      location: { region, district, city, area },
     };
 
     const res = await fetch("/api/bookings", {
@@ -119,7 +129,13 @@ export default function BookingClient({ serviceId }) {
     });
 
     if (res.ok) {
-      alert("Booking successful! Status: Pending");
+      alert("Booking successful! Invoice sent to your email 📧");
+      setRegion("");
+      setDistrict("");
+      setCity("");
+      setArea("");
+      setDurationType("hour");
+      setDurationValue(1);
     } else {
       alert("Error saving booking");
     }

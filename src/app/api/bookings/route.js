@@ -1,25 +1,42 @@
 import { NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
-import Booking from "@/models/Booking";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { sendInvoiceEmail } from "@/lib/sendInvoiceEmail";
 
 export async function POST(req) {
   const session = await getServerSession(authOptions);
+
   if (!session) {
-    return new Response(JSON.stringify({ error: "Unauthorized" }), {
-      status: 401,
-    });
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-
   const data = await req.json();
-  data.user = session.user.email; // add logged-in user
-  data.service = data.serviceId;
-  data.date = new Date();
+
+  const booking = {
+    ...data,
+    user: session.user.email,
+    date: new Date(),
+    status: "Pending",
+  };
 
   const collection = await dbConnect("bookings");
-  const result = await collection.insertOne(data);
+  const result = await collection.insertOne(booking);
 
-  return NextResponse.json(result);
+  // 🔥 SEND EMAIL INVOICE
+  try {
+    await sendInvoiceEmail({
+      to: session.user.email,
+      booking,
+    });
+    console.log("Invoice email sent!");
+  } catch (err) {
+    console.error("Error sending email:", err);
+  }
+
+  return NextResponse.json({
+    success: true,
+    message: "Booking confirmed & invoice emailed",
+    bookingId: result.insertedId,
+  });
 }

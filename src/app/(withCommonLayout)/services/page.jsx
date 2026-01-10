@@ -18,7 +18,8 @@ const Services = async ({ searchParams }) => {
         {/* Page Header */}
         <div className="max-w-3xl text-center mx-auto mb-12">
           <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-800 dark:text-white mb-4">
-            Our Professional Care Services
+            Our Professional{" "}
+            <span className="text-emerald-500">Care Services</span>
           </h1>
           <p className="text-slate-600 dark:text-slate-300 text-lg">
             Trusted baby care, elderly care, and home services provided by

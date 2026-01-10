@@ -1,5 +1,5 @@
 "use client";
-
+import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
@@ -8,6 +8,7 @@ import { Menu, X } from "lucide-react";
 const Navbar = () => {
   const { data: session, status } = useSession();
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -28,34 +29,62 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <ul className="hidden md:flex items-center gap-8 font-medium">
-            {navLinks.map((link) => (
-              <li key={link.name}>
-                <Link
-                  href={link.href}
-                  className="text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition"
-                >
-                  {link.name}
-                </Link>
-              </li>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+
+              return (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className={`relative transition ${
+                      isActive
+                        ? "text-emerald-600 font-semibold"
+                        : "text-slate-600 dark:text-slate-300 hover:text-emerald-500"
+                    }`}
+                  >
+                    {link.name}
+
+                    {/* Active underline */}
+                    {isActive && (
+                      <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-emerald-500 rounded-full"></span>
+                    )}
+                  </Link>
+                </li>
+              );
+            })}
+
             {session?.user && (
               <li>
                 <Link
-                href="/dashboard"
-                className="text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition"
-              >
-                Dashboard
-              </Link>
+                  href="/my-bookings"
+                  className={`relative transition ${
+                    pathname === "/my-bookings"
+                      ? "text-emerald-600 font-semibold"
+                      : "text-slate-600 dark:text-slate-300 hover:text-emerald-500"
+                  }`}
+                >
+                  My Bookings
+                  {pathname === "/my-bookings" && (
+                    <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-emerald-500 rounded-full"></span>
+                  )}
+                </Link>
               </li>
             )}
             {session?.user && (
               <li>
                 <Link
-                href="/my-bookings"
-                className="text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition"
-              >
-                My Bookings
-              </Link>
+                  href="/dashboard"
+                  className={`relative transition ${
+                    pathname === "/dashboard"
+                      ? "text-emerald-600 font-semibold"
+                      : "text-slate-600 dark:text-slate-300 hover:text-emerald-500"
+                  }`}
+                >
+                  Dashboard
+                  {pathname === "/dashboard" && (
+                    <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-emerald-500 rounded-full"></span>
+                  )}
+                </Link>
               </li>
             )}
           </ul>

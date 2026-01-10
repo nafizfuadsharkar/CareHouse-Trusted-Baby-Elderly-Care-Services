@@ -4,7 +4,10 @@ import { Star } from "lucide-react";
 import BookingButton from "../_components/BookingButton";
 import { getSingleService } from "@/Services/services.service";
 
-
+export const metadata = {
+  title: "Details Produc | CareHouse",
+  description: "Explore trusted baby care, elderly care, and home services",
+};
 
 // const getSingleService = async (id) => {
 //   const res = await fetch(
@@ -14,8 +17,8 @@ import { getSingleService } from "@/Services/services.service";
 //   return service;
 // };
 
-  // const { slug } = await params;
-  // const service = await getSingleService(slug);
+// const { slug } = await params;
+// const service = await getSingleService(slug);
 
 const ServiceDetails = async ({ params }) => {
   const { slug } = await params;
@@ -30,10 +33,9 @@ const ServiceDetails = async ({ params }) => {
       </div>
     );
   }
-return (
-  <section className="section-padding">
+  return (
+    <section className="section-padding">
       <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-start">
-
         {/* Image */}
         <div className="relative h-[450px] sm:h-[500px] rounded-3xl overflow-hidden shadow-xl">
           <Image
@@ -70,7 +72,9 @@ return (
           {/* Price & Booking */}
           <div className="glass-card p-8 mt-10 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Price per hour</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                Price per hour
+              </p>
               <p className="text-4xl font-bold text-emerald-600">
                 ৳{service.pricePerHour}
               </p>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { signup } from "@/Services/users.service";
 import { Sparkles } from "lucide-react";
 import { signIn } from "next-auth/react";
@@ -30,6 +30,10 @@ const RegisterPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+
+  useEffect(() => {
+      document.title = "Register | Trusted Baby & Elderly Care Services";
+    }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
