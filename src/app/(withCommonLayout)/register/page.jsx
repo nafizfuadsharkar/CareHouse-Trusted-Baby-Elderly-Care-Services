@@ -5,6 +5,7 @@ import { signup } from "@/Services/users.service";
 import { Sparkles } from "lucide-react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const randomImages = [
   "https://randomuser.me/api/portraits/men/32.jpg",
@@ -189,9 +190,9 @@ const RegisterPage = () => {
         {/* Footer */}
         <p className="text-center text-sm text-slate-500 mt-6">
           Already have an account?{" "}
-          <span className="text-emerald-600 font-medium cursor-pointer hover:underline">
+          <Link href={'/login'} className="text-emerald-600 font-medium cursor-pointer hover:underline">
             Login
-          </span>
+          </Link>
         </p>
       </div>
     </section>
