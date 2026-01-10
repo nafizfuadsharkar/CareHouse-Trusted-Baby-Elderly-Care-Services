@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { createReview } from '@/Services/reviews.service';
-import { Star } from 'lucide-react';
+import React, { useState } from "react";
+import { createReview } from "@/Services/reviews.service";
+import { Star } from "lucide-react";
 
 const AddReviewPage = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    serviceId: '',
+    name: "",
+    serviceId: "",
     rating: 0,
-    comment: '',
+    comment: "",
   });
 
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState('');
-  const [error, setError] = useState('');
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setFormData({
@@ -30,20 +30,20 @@ const AddReviewPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError('');
-    setSuccess('');
+    setError("");
+    setSuccess("");
 
     try {
       await createReview(formData);
-      setSuccess('Review submitted successfully!');
+      setSuccess("Review submitted successfully!");
       setFormData({
-        name: '',
-        serviceId: '',
+        name: "",
+        serviceId: "",
         rating: 0,
-        comment: '',
+        comment: "",
       });
     } catch (err) {
-      setError('Failed to submit review. Please try again.');
+      setError("Failed to submit review. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -54,9 +54,7 @@ const AddReviewPage = () => {
       <div className="w-full max-w-xl bg-white rounded-2xl shadow-lg p-8">
         {/* Header */}
         <div className="text-center mb-6">
-          <h2 className="text-3xl font-bold text-gray-800">
-            Add a Review
-          </h2>
+          <h2 className="text-3xl font-bold text-gray-800">Add a Review</h2>
           <p className="text-gray-500 mt-1">
             Share your experience with our service
           </p>
@@ -132,8 +130,8 @@ const AddReviewPage = () => {
                   onClick={() => handleRating(star)}
                   className={`w-6 h-6 cursor-pointer transition ${
                     star <= formData.rating
-                      ? 'text-yellow-400 fill-yellow-400'
-                      : 'text-gray-300'
+                      ? "text-yellow-400 fill-yellow-400"
+                      : "text-gray-300"
                   }`}
                 />
               ))}
@@ -172,7 +170,7 @@ const AddReviewPage = () => {
               transition disabled:opacity-60
             "
           >
-            {loading ? 'Submitting...' : 'Submit Review'}
+            {loading ? "Submitting..." : "Submit Review"}
           </button>
         </form>
       </div>

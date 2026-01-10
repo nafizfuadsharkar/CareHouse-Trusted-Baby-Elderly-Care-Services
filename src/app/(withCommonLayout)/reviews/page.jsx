@@ -3,13 +3,10 @@ import { getAllReviews } from "@/Services/reviews.service";
 import { Star, Quote } from "lucide-react";
 import Link from "next/link";
 
-const ReviewsPage = async () => {
-  const response = await getAllReviews();
+export const dynamic = "force-dynamic"; // optional, ensures fresh server fetch
 
-  const reviews =
-    Array.isArray(response)
-      ? response
-      : response?.data || response?.reviews || [];
+const ReviewsPage = async () => {
+  const reviews = await getAllReviews(); // direct DB fetch
 
   return (
     <section className="relative py-16 bg-gradient-to-br from-emerald-50 via-white to-emerald-100">
@@ -25,10 +22,14 @@ const ReviewsPage = async () => {
         </div>
 
         <div>
-            <Link className="bg-gradient-to-br from-emerald-400 to-emerald-600 px-4 py-3 rounded-2xl font-semibold  inline-block my-4" href={'/reviews/add-review'}>Add Your Review</Link>
+          <Link
+            className="bg-gradient-to-br from-emerald-400 to-emerald-600 px-4 py-3 rounded-2xl font-semibold inline-block my-4"
+            href={"/reviews/add-review"}
+          >
+            Add Your Review
+          </Link>
         </div>
 
-        {/* Empty State */}
         {reviews.length === 0 ? (
           <div className="text-center text-gray-500 text-lg">
             No reviews available yet
@@ -40,15 +41,11 @@ const ReviewsPage = async () => {
                 key={review._id}
                 className="group relative bg-white/70 backdrop-blur-md rounded-3xl border border-white/40 shadow-md hover:shadow-xl transition-all duration-300 p-7 flex flex-col"
               >
-                {/* Quote Icon */}
                 <Quote className="absolute top-6 right-6 w-6 h-6 text-emerald-200" />
-
-                {/* User */}
                 <div className="flex items-center gap-4 mb-5">
                   <div className="w-14 h-14 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-white font-bold text-xl shadow">
                     {review.name?.charAt(0)}
                   </div>
-
                   <div>
                     <h4 className="font-semibold text-gray-800">
                       {review.name}
@@ -59,7 +56,6 @@ const ReviewsPage = async () => {
                   </div>
                 </div>
 
-                {/* Rating */}
                 <div className="flex items-center gap-2 mb-4">
                   <div className="flex gap-1">
                     {[...Array(5)].map((_, i) => (
@@ -78,7 +74,6 @@ const ReviewsPage = async () => {
                   </span>
                 </div>
 
-                {/* Comment */}
                 <p className="text-gray-600 text-sm leading-relaxed flex-grow">
                   “{review.comment}”
                 </p>

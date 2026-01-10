@@ -1,46 +1,18 @@
 "use server";
 import { revalidateTag } from "next/cache";
+import dbConnect from "@/lib/dbConnect";
 
-
-export const getAllReviews = async (searchParams) => {
-  const getParams = new URLSearchParams(searchParams).toString();
-  console.log(getParams);
-
-  const res = await fetch(
-    `${
-      process.env.NEXT_AUTH_URL || "http://localhost:3000"
-    }/api/reviews?${getParams}`,
-    {
-      cache: "force-cache",
-      next: {
-        tags: ["reviews"],
-        revalidate: 60, // revalidate this data every 60 seconds
-      },
-    }
-  );
-
-  const data = await res.json();
-  return data;
+export const getAllReviews = async () => {
+  const reviewsCollection = await dbConnect("reviews");
+  const reviews = await reviewsCollection.find({}).toArray();
+  return reviews;
 };
 
-export const createReview = async (data) => {
-  const res = await fetch(
-    `${process.env.NEXT_AUTH_URL || "http://localhost:3000"}/api/reviews`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }
-  );
+export const createReview = async (review) => {
+  const reviewsCollection = await dbConnect("reviews");
+  const result = await reviewsCollection.insertOne(review);
 
-  if (!res.ok) {
-    throw new Error("Failed to create review");
-  }
+  revalidateTag("reviews"); // refresh cache if using ISR
 
-  //   revalidatePath("/reviews");
-  revalidateTag("reviews");
-
-  return res.json();
+  return result;
 };
