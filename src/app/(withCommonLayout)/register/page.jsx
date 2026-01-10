@@ -2,6 +2,9 @@
 
 import React, { useState } from "react";
 import { signup } from "@/Services/users.service";
+import { Sparkles } from "lucide-react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const randomImages = [
   "https://randomuser.me/api/portraits/men/32.jpg",
@@ -13,6 +16,7 @@ const randomImages = [
 ];
 
 const RegisterPage = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -27,10 +31,7 @@ const RegisterPage = () => {
   const [success, setSuccess] = useState("");
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const generateRandomImage = () => {
@@ -46,59 +47,74 @@ const RegisterPage = () => {
     setSuccess("");
 
     try {
+      // 1️⃣ Signup
       await signup(formData);
-      setSuccess("Account created successfully!");
-      setFormData({
-        name: "",
-        phone: "",
-        email: "",
-        password: "",
-        image: "",
-        role: "user",
+
+      // 2️⃣ Auto login
+      const res = await signIn("credentials", {
+        email: formData.email,
+        password: formData.password,
+        redirect: false,
       });
+
+      if (res?.error) {
+        throw new Error("Login failed after signup");
+      }
+
+      // 3️⃣ Success message
+      setSuccess("Account created! Redirecting...");
+
+      // 4️⃣ Redirect
+      setTimeout(() => {
+        router.push("/");
+      }, 1200);
     } catch (err) {
-      setError(err.message); // this will now show "This email is already registered" if email exists
+      setError(err.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <section className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
-      <div className="w-full max-w-lg bg-white rounded-2xl shadow-lg p-8">
+    <section className="min-h-screen section-padding flex items-center justify-center">
+      <div className="glass-card w-full max-w-lg p-8">
         {/* Header */}
-        <div className="text-center mb-6">
+        <div className="text-center mb-8">
           {formData.image ? (
             <img
               src={formData.image}
               alt="Profile Preview"
-              className="w-24 h-24 rounded-full mx-auto mb-3 object-cover border"
+              className="w-24 h-24 rounded-full mx-auto mb-4 object-cover border border-[var(--border-color)]"
             />
           ) : (
-            <div className="w-24 h-24 rounded-full mx-auto mb-3 bg-gray-100 flex items-center justify-center text-gray-400 text-sm">
-              No Image
+            <div className="w-24 h-24 rounded-full mx-auto mb-4 bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-500 text-sm">
+              Profile
             </div>
           )}
 
-          <h2 className="text-3xl font-bold text-gray-800">Create Account</h2>
-          <p className="text-gray-500 mt-1">Register to get started</p>
+          <h2 className="text-3xl font-bold tracking-tight">
+            Create Your Account
+          </h2>
+          <p className="mt-2 text-slate-600 dark:text-slate-300">
+            Join us and get started today
+          </p>
         </div>
 
         {/* Alerts */}
         {success && (
-          <p className="mb-4 text-green-600 bg-green-50 p-3 rounded text-sm">
+          <div className="mb-4 rounded-xl bg-emerald-50 text-emerald-700 px-4 py-3 text-sm">
             {success}
-          </p>
+          </div>
         )}
+
         {error && (
-          <p className="mb-4 text-red-600 bg-red-50 p-3 rounded text-sm">
+          <div className="mb-4 rounded-xl bg-red-50 text-red-600 px-4 py-3 text-sm">
             {error}
-          </p>
+          </div>
         )}
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Name */}
           <input
             type="text"
             name="name"
@@ -106,10 +122,9 @@ const RegisterPage = () => {
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 rounded-lg border bg-white text-gray-800 placeholder:text-gray-400 focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+            className="w-full rounded-xl border border-[var(--border-color)] bg-white/70 dark:bg-slate-900/60 px-4 py-3 focus:ring-2 focus:ring-emerald-400 outline-none transition"
           />
 
-          {/* Phone */}
           <input
             type="text"
             name="phone"
@@ -117,10 +132,9 @@ const RegisterPage = () => {
             value={formData.phone}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 rounded-lg border bg-white text-gray-800 placeholder:text-gray-400 focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+            className="w-full rounded-xl border border-[var(--border-color)] bg-white/70 dark:bg-slate-900/60 px-4 py-3 focus:ring-2 focus:ring-emerald-400 outline-none transition"
           />
 
-          {/* Email */}
           <input
             type="email"
             name="email"
@@ -128,10 +142,9 @@ const RegisterPage = () => {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 rounded-lg border bg-white text-gray-800 placeholder:text-gray-400 focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+            className="w-full rounded-xl border border-[var(--border-color)] bg-white/70 dark:bg-slate-900/60 px-4 py-3 focus:ring-2 focus:ring-emerald-400 outline-none transition"
           />
 
-          {/* Password */}
           <input
             type="password"
             name="password"
@@ -139,24 +152,26 @@ const RegisterPage = () => {
             value={formData.password}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 rounded-lg border bg-white text-gray-800 placeholder:text-gray-400 focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+            className="w-full rounded-xl border border-[var(--border-color)] bg-white/70 dark:bg-slate-900/60 px-4 py-3 focus:ring-2 focus:ring-emerald-400 outline-none transition"
           />
 
-          {/* Image URL + Random Button */}
-          <div className="flex gap-2">
+          {/* Image */}
+          <div className="flex gap-3">
             <input
               type="text"
               name="image"
               placeholder="Profile Image URL"
               value={formData.image}
               onChange={handleChange}
-              className="flex-1 px-4 py-2 rounded-lg border bg-white text-gray-800 placeholder:text-gray-400 focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+              className="flex-1 rounded-xl border border-[var(--border-color)] bg-white/70 dark:bg-slate-900/60 px-4 py-3 focus:ring-2 focus:ring-emerald-400 outline-none transition"
             />
+
             <button
               type="button"
               onClick={generateRandomImage}
-              className="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700 transition"
+              className="secondary-button flex items-center gap-2"
             >
+              <Sparkles size={16} />
               Random
             </button>
           </div>
@@ -165,11 +180,19 @@ const RegisterPage = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 rounded-lg font-semibold text-white bg-emerald-600 hover:bg-emerald-700 transition disabled:opacity-60"
+            className="primary-button w-full mt-2 disabled:opacity-60"
           >
             {loading ? "Creating account..." : "Register"}
           </button>
         </form>
+
+        {/* Footer */}
+        <p className="text-center text-sm text-slate-500 mt-6">
+          Already have an account?{" "}
+          <span className="text-emerald-600 font-medium cursor-pointer hover:underline">
+            Login
+          </span>
+        </p>
       </div>
     </section>
   );

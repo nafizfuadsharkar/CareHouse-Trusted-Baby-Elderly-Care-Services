@@ -1,4 +1,5 @@
-import { dbConnect } from "@/lib/dbConnect";
+
+import dbConnect from "@/lib/dbConnect";
 import bcrypt from "bcryptjs";
 
 const users = await dbConnect("users");

@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Github, Mail } from "lucide-react";
+import Link from "next/link";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -14,67 +16,99 @@ export default function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Call NextAuth credentials signIn
     const result = await signIn("credentials", {
-      redirect: false, // we'll handle redirect manually
+      redirect: false,
       email,
       password,
     });
 
     if (result?.error) {
-      alert("Login failed! Check your email and password.");
+      alert("Invalid email or password");
     } else {
-      router.push("/dashboard"); // redirect after login
+      router.push("/dashboard");
     }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <h1 className="text-2xl font-bold mb-4">Login</h1>
+    <div className="min-h-screen flex items-center justify-center section-padding">
+      <div className="glass-card w-full max-w-md p-8 space-y-6">
+        {/* Header */}
+        <div className="text-center">
+          <h1 className="text-3xl font-bold tracking-tight">Welcome Back 👋</h1>
+          <p className="mt-2 text-slate-600 dark:text-slate-300">
+            Login to continue to your dashboard
+          </p>
+        </div>
 
-      {error && <p className="text-red-500 mb-2">Error: {error}</p>}
+        {/* Error */}
+        {error && (
+          <p className="text-red-500 text-sm text-center">
+            Login failed. Please try again.
+          </p>
+        )}
 
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col gap-2 w-[300px]"
-      >
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          className="border px-2 py-1 rounded"
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          className="border px-2 py-1 rounded"
-        />
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-        >
-          Login
-        </button>
-      </form>
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="text-sm font-medium">Email</label>
+            <input
+              type="email"
+              placeholder="you@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="mt-1 w-full rounded-xl border border-[var(--border-color)] bg-white/70 dark:bg-slate-900/60 px-4 py-3 outline-none focus:ring-2 focus:ring-emerald-400 transition"
+            />
+          </div>
 
-      <div className="mt-4 flex gap-2">
-        <button
-          className="bg-red-500 text-white px-4 py-2 rounded"
-          onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
-        >
-          Login with Google
-        </button>
-        <button
-          className="bg-black text-white px-4 py-2 rounded"
-          onClick={() => signIn("github", { callbackUrl: "/dashboard" })}
-        >
-          Login with GitHub
-        </button>
+          <div>
+            <label className="text-sm font-medium">Password</label>
+            <input
+              type="password"
+              placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="mt-1 w-full rounded-xl border border-[var(--border-color)] bg-white/70 dark:bg-slate-900/60 px-4 py-3 outline-none focus:ring-2 focus:ring-emerald-400 transition"
+            />
+          </div>
+
+          <button type="submit" className="primary-button w-full">
+            Login
+          </button>
+        </form>
+
+        {/* Divider */}
+        <div className="flex items-center gap-3">
+          <div className="h-px flex-1 bg-slate-200 dark:bg-slate-700" />
+          <span className="text-sm text-slate-500">or</span>
+          <div className="h-px flex-1 bg-slate-200 dark:bg-slate-700" />
+        </div>
+
+        {/* Social Login */}
+        <div className="space-y-3">
+          <button
+            onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+            className="secondary-button w-full flex items-center justify-center gap-2"
+          >
+            <Mail size={18} /> Continue with Google
+          </button>
+
+          <button
+            onClick={() => signIn("github", { callbackUrl: "/dashboard" })}
+            className="secondary-button w-full flex items-center justify-center gap-2"
+          >
+            <Github size={18} /> Continue with GitHub
+          </button>
+        </div>
+
+        {/* Footer */}
+        <p className="text-center text-sm text-slate-500">
+          Don’t have an account?{" "}
+          <Link href={'/register'} className="text-emerald-600 font-medium cursor-pointer hover:underline">
+            Sign up
+          </Link>
+        </p>
       </div>
     </div>
   );
