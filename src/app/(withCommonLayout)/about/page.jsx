@@ -2,8 +2,12 @@
 
 import { motion } from "framer-motion";
 import { HeartHandshake, Users, ShieldCheck, Clock } from "lucide-react";
+import { useEffect } from "react";
 
 export default function AboutPage() {
+  useEffect(() => {
+    document.title = "About | Trusted Baby & Elderly Care Services";
+  }, []);
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950 text-slate-800 dark:text-slate-100">
       {/* ---------- Hero Section ---------- */}
